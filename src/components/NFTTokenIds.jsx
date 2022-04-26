@@ -85,7 +85,6 @@ function NFTTokenIds({ inputValue, setInputValue }) {
   );
   const purchaseItemFunction = "createMarketSale";
   const NFTCollections = getCollectionsByChain(chainId);
-  // console.log('NFTCollections:', NFTCollections);
 
   async function purchase() {
     setLoading(true);
@@ -121,7 +120,6 @@ function NFTTokenIds({ inputValue, setInputValue }) {
 
   const handleBuyClick = (nft) => {
     setNftToBuy(nft);
-    // console.log(nft.image);
     setVisibility(true);
   };
 
@@ -159,7 +157,6 @@ function NFTTokenIds({ inputValue, setInputValue }) {
   }
 
   const getMarketItem = (nft) => {
-    // console.log('nft',nft);
     const result = fetchMarketItems?.find(
       (e) =>
       e.nftContract === nft?.token_address &&

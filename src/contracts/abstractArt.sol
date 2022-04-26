@@ -14,8 +14,8 @@ contract Abstract is ERC721URIStorage, Ownable {
     string public baseURI;
     string public baseExtension = ".json";
 
-    constructor() ERC721("Abstract Art", "JL") {
-        mintNFT(msg.sender, 13);
+    constructor() ERC721("Test Contract 1", "JL") {
+        mintNFT(msg.sender, 3);
     }
 
     function mintNFT(address recipient, uint256 _mintAmount) public onlyOwner {
