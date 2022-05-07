@@ -23,6 +23,11 @@ export const networkCollections = {
       name: "Pixel Show",
       addrs: "0xCA34404dD8Bd6537BE76F3A51B379F8949bD7973",
     },
+    {
+      image: "https://ipfs.moralis.io:2053/ipfs/QmRCCbcTGFX2rVci8EY4jy9NsY7w2seCbNZGZpdPm47xfb/1.png",
+      name: "Aliens2",
+      addrs: "0xc9d946362641a4bb9d44f261edd59febb0271da7"
+    }
   ],
 
   "0x1": [

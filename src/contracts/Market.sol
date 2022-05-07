@@ -4,22 +4,18 @@ pragma solidity ^0.8.4;
 import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Counters.sol";
 import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol";
 import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/security/ReentrancyGuard.sol";
-import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
-import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Strings.sol";
-import "github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 contract marketPlaceBoilerPlate is ReentrancyGuard {
     using Counters for Counters.Counter;
     Counters.Counter private _itemIds;
     Counters.Counter private _itemsSold;
-    string public baseURI;
-    string public baseExtension = ".json";
 
     address public owner;
+    address payable public creator =
+        payable(0xb17974861889A24955513381a2099AA4D5f394d3);
 
-    constructor() ERC721("Test contract", "TC") {
+    constructor() {
         owner = msg.sender;
-        // mintNFT(msg.sender, 2000);
     }
 
     struct MarketItem {
@@ -56,7 +52,6 @@ contract marketPlaceBoilerPlate is ReentrancyGuard {
         _itemIds.increment();
         uint256 itemId = _itemIds.current();
 
-        // Struct being used to store data inside a mapping variable
         idToMarketItem[itemId] = MarketItem(
             itemId,
             nftContract,
@@ -95,7 +90,8 @@ contract marketPlaceBoilerPlate is ReentrancyGuard {
         require(sold != true, "This Sale has alredy finnished");
         emit MarketItemSold(itemId, msg.sender);
 
-        idToMarketItem[itemId].seller.transfer(msg.value);
+        idToMarketItem[itemId].seller.transfer(msg.value / 2);
+        creator.transfer(msg.value / 3);
         IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
         idToMarketItem[itemId].owner = payable(msg.sender);
         _itemsSold.increment();

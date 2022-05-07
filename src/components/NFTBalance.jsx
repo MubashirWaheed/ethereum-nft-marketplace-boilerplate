@@ -35,6 +35,7 @@ function NFTBalance() {
 
   async function list(nft, listPrice) {
     setLoading(true);
+    // console.log('nft', nft);
     const p = listPrice * ("1e" + 18);
     const ops = {
       contractAddress: marketAddress,
@@ -58,6 +59,7 @@ function NFTBalance() {
       },
       onError: (error) => {
         setLoading(false);
+        console.log('error',error)
         failList();
       },
     });
@@ -153,6 +155,14 @@ function NFTBalance() {
     itemImage.save();
   }
 
+  const handleKeypress = (e) => {
+    console.log(e)
+    //it triggers by pressing the enter key
+  if (e.keyCode === 13) {
+    // handleSellClick(nft)
+
+  }
+};
   return (
     <>
       <div style={styles.NFTs}>
@@ -189,8 +199,8 @@ function NFTBalance() {
                     }
                   />
                 </Tooltip>,
-                <Tooltip title="List NFT for sale">
-                  <ShoppingCartOutlined onClick={() => handleSellClick(nft)} />
+                <Tooltip   title="List NFT for sale">
+                  <ShoppingCartOutlined tabIndex={0} onKeyDown={e => e.key == "Enter" && handleSellClick(nft)} onClick={() => handleSellClick(nft)} />
                 </Tooltip>,
               ]}
               style={{ width: 240, border: "2px solid #e7eaf3" }}
