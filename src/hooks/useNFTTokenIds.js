@@ -11,6 +11,8 @@ export const useNFTTokenIds = (addr) => {
   const [NFTTokenIds, setNFTTokenIds] = useState([]);
   const [totalNFTs, setTotalNFTs] = useState();
   const [fetchSuccess, setFetchSuccess] = useState(true);
+  const [cursor, setCursor] = useState()
+  const [page, setPage] = useState(1)
   const {
     fetch: getNFTTokenIds,
     data,
@@ -19,11 +21,13 @@ export const useNFTTokenIds = (addr) => {
   } = useMoralisWeb3ApiCall(token.getAllTokenIds, {
     chain: chainId,
     address: addr,
-    limit: 10,
+    cursor:cursor,
+    limit: 5,
   });
   useEffect(()=>{
     async function getData() {
       if (data?.result) {
+        console.log('data from hook',data)
         const NFTs = data.result;
         setTotalNFTs(data.total);
         setFetchSuccess(true);
@@ -82,5 +86,9 @@ export const useNFTTokenIds = (addr) => {
     fetchSuccess,
     error,
     isLoading,
+    setCursor,
+    data,
+    setPage, 
+    page
   };
 };

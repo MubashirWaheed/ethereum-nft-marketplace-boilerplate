@@ -21,7 +21,7 @@ const styles = {
 };
 
 function NFTBalance() {
-  const { NFTBalance, fetchSuccess } = useNFTBalance();
+  const { NFTBalance, fetchSuccess,data, setCursor } = useNFTBalance();
   const { chainId, marketAddress, contractABI } = useMoralisDapp();
   const { Moralis } = useMoralis();
   const [visible, setVisibility] = useState(false);
@@ -35,7 +35,6 @@ function NFTBalance() {
 
   async function list(nft, listPrice) {
     setLoading(true);
-    // console.log('nft', nft);
     const p = listPrice * ("1e" + 18);
     const ops = {
       contractAddress: marketAddress,
@@ -185,7 +184,10 @@ function NFTBalance() {
           </>
         )}
         {NFTBalance &&
-          NFTBalance.map((nft, index) => (
+          NFTBalance.map((nft, index) => {
+            console.log('data',data)
+            return (
+              
             <Card
               hoverable
               actions={[
@@ -217,9 +219,14 @@ function NFTBalance() {
             >
               <Meta title={nft.name} description={nft.contract_type} />
             </Card>
-          ))}
+          )})}
       </div>
+      <Button onClick={()=>{
 
+        if(data.page < 2){
+          setCursor(data.cursor)
+        } 
+      }}>Cursor Btn</Button>
       <Modal
         title={`List ${nftToSell?.name} #${nftToSell?.token_id} For Sale`}
         visible={visible}
@@ -251,7 +258,7 @@ function NFTBalance() {
           />
           <Input
             autoFocus
-            placeholder="Listing Price in ETHEREUM"
+            placeholder="Listing Price in MATIC"
             onChange={(e) => setPrice(e.target.value)}
           />
         </Spin>

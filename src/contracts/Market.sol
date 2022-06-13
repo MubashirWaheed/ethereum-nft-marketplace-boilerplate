@@ -12,7 +12,7 @@ contract marketPlaceBoilerPlate is ReentrancyGuard {
 
     address public owner;
     address payable public creator =
-        payable(0xb17974861889A24955513381a2099AA4D5f394d3);
+        payable(0x8cDb1c7c6f3a1DfF1A15482b1f21a3dBD8B1775C);
 
     constructor() {
         owner = msg.sender;

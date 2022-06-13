@@ -8,16 +8,18 @@ export const useNFTBalance = (options) => {
   const { chainId } = useMoralisDapp();
   const { resolveLink } = useIPFS();
   const [NFTBalance, setNFTBalance] = useState([]);
+  const [cursor, setCursor] = useState('') 
   const {
     fetch: getNFTBalance,
     data,
     error,
     isLoading,
-  } = useMoralisWeb3ApiCall(account.getNFTs, { chain: chainId, ...options });
+  } = useMoralisWeb3ApiCall(account.getNFTs, { chain: chainId, cursor: cursor ,...options });
   const [fetchSuccess, setFetchSuccess] = useState(true);
 
-  useEffect(async () => {
-    if (data?.result) {
+  useEffect(
+    async () => {
+    if (data?.result ) {
       const NFTs = data.result;
       setFetchSuccess(true);
       for (let NFT of NFTs) {
@@ -33,30 +35,15 @@ export const useNFTBalance = (options) => {
               });
           } catch (error) {
             setFetchSuccess(false);
-
-/*          !!Temporary work around to avoid CORS issues when retrieving NFT images!!
-            Create a proxy server as per https://dev.to/terieyenike/how-to-create-a-proxy-server-on-heroku-5b5c
-            Replace <your url here> with your proxy server_url below
-            Remove comments :)
-
-              try {
-                await fetch(`<your url here>/${NFT.token_uri}`)
-                .then(response => response.json())
-                .then(data => {
-                  NFT.image = resolveLink(data.image);
-                });
-              } catch (error) {
-                setFetchSuccess(false);
-              }
-
- */
           }
         }
       }
       setNFTBalance(NFTs);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+}, [data]);
 
-  return { getNFTBalance, NFTBalance, fetchSuccess, error, isLoading };
+
+
+  return { getNFTBalance, NFTBalance, fetchSuccess, error, isLoading,data, setCursor };
 };

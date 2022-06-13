@@ -8,7 +8,7 @@ export const networkCollections = {
       addrs:"0xb87f5e3443Ed57bc848FD7D20B98A1b2eB8C8307"
     }
   ],
-  // Polygon 
+  // Polygon mumbai
   "0x13881": [
     //Add Your Collections here
     {
@@ -25,9 +25,36 @@ export const networkCollections = {
     },
     {
       image: "https://ipfs.moralis.io:2053/ipfs/QmRCCbcTGFX2rVci8EY4jy9NsY7w2seCbNZGZpdPm47xfb/1.png",
-      name: "Aliens2",
-      addrs: "0xc9d946362641a4bb9d44f261edd59febb0271da7"
+      name: "ALiens Royalty",
+      addrs: "0xc468b3b2924ad8bf8994e77031853b9044b6fd73"
     }
+  ],
+  // Polygon mainnet 
+  "0x89":[
+    {
+      image: 
+      "https://ipfs.moralis.io:2053/ipfs/QmRCCbcTGFX2rVci8EY4jy9NsY7w2seCbNZGZpdPm47xfb/1.png",
+      name: "Aliens",
+      // Address of the deployed nft contract 
+      addrs:"0x083f7db8872f84820873bd89e545fea86e3e365b"
+    },
+    {
+      image: "https://ipfs.moralis.io:2053/ipfs/QmRCCbcTGFX2rVci8EY4jy9NsY7w2seCbNZGZpdPm47xfb/201.png",
+      name: "Aliens 2",
+      addrs: "0x29f55577e28c4de0fd33ea472ec0f60bbfa444cb"
+    },
+    {
+      image: "https://ipfs.moralis.io:2053/ipfs/QmRCCbcTGFX2rVci8EY4jy9NsY7w2seCbNZGZpdPm47xfb/401.png",
+      name: "Aliens 3",
+      addrs: "0x2481cfa102a0666979d34350c7a24b4f4022611a"
+    },
+    {
+      image: "https://ipfs.moralis.io:2053/ipfs/QmRCCbcTGFX2rVci8EY4jy9NsY7w2seCbNZGZpdPm47xfb/601.png",
+      name: "Aliens 4",
+      addrs: "0x0a43883414d448d8532f6171b8eb43bf00633cc3"
+
+    }
+
   ],
 
   "0x1": [
