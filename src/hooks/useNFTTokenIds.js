@@ -22,7 +22,7 @@ export const useNFTTokenIds = (addr) => {
     chain: chainId,
     address: addr,
     cursor:cursor,
-    limit: 5,
+    limit: 100,
   });
   useEffect(()=>{
     async function getData() {

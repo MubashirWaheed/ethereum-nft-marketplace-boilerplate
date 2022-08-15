@@ -154,14 +154,7 @@ function NFTBalance() {
     itemImage.save();
   }
 
-  const handleKeypress = (e) => {
-    console.log(e)
-    //it triggers by pressing the enter key
-  if (e.keyCode === 13) {
-    // handleSellClick(nft)
-
-  }
-};
+  
   return (
     <>
       <div style={styles.NFTs}>
@@ -221,12 +214,12 @@ function NFTBalance() {
             </Card>
           )})}
       </div>
-      <Button onClick={()=>{
+      {/* <Button onClick={()=>{
 
         if(data.page < 2){
           setCursor(data.cursor)
         } 
-      }}>Cursor Btn</Button>
+      }}>Next Page</Button> */}
       <Modal
         title={`List ${nftToSell?.name} #${nftToSell?.token_id} For Sale`}
         visible={visible}

@@ -69,7 +69,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
   const contractABIJson = JSON.parse(contractABI);
   const { Moralis } = useMoralis();
   
-  const queryMarketItems = useMoralisQuery("CreatedMarketItem");
+  const queryMarketItems = useMoralisQuery("CreatedMarketItem", (query)=> query.limit(3000));
   const fetchMarketItems = JSON.parse(
     JSON.stringify(queryMarketItems.data, [
       "objectId",
@@ -86,6 +86,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
   );
   const purchaseItemFunction = "createMarketSale";
   const NFTCollections = getCollectionsByChain(chainId);
+
 
   async function purchase() {
     setLoading(true);
@@ -158,13 +159,10 @@ function NFTTokenIds({ inputValue, setInputValue }) {
   }
 
   const getMarketItem = (nft) => {
-    // console.log('fetchMarketItems',fetchMarketItems)
+    console.log('fetchMarketItems',fetchMarketItems)
     const result = fetchMarketItems?.find(
       (e) =>{
-        if(e.tokenId == 28){
-          console.log(e)
-        }
-        // console.log('e.tokenID',e)
+        
         return e.nftContract === nft?.token_address &&
         e.tokenId === nft?.token_id &&
         e.sold === false &&
@@ -304,15 +302,13 @@ function NFTTokenIds({ inputValue, setInputValue }) {
         { data &&
 
           <Button onClick={()=>{
-            console.log('data.cursor',data)
-            // setPage(page+1)
             if(data.page == 1){
               setCursor('')
             }else{
               setCursor(data.cursor)
             }
           
-          }}>Cursor btn</Button>
+          }}>Next Page</Button>
         }
        
 
